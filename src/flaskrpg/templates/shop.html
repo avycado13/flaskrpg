@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ shop.name }}</title>
+</head>
+<body>
+    <h1>{{ shop.name }}</h1>
+    <p>Gold: {{ shop.player.gold }}</p>
+    <h2>Items for Sale</h2>
+    <ul>
+        {% for item, price in shop.list_items().items() %}
+        <li>
+            <strong>{{ item.name }}</strong> - Damage: {{ item.damage }} | Health: {{ item.health }} | Cost: {{ price }} Gold
+            <a href="{{ url_for('buy', item_name=item.name) }}">Buy</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('player_page') }}">Go to Player Page</a>
+</body>
+</html>

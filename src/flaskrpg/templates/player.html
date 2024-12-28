@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player - {{ player.attributes['name'] }}</title>
+</head>
+<body>
+    <h1>Player - {{ player.attributes['name'] }}</h1>
+    <p>Health: {{ player.health }}</p>
+    <p>Gold: {{ player.gold }}</p>
+    <h2>Inventory</h2>
+    <ul>
+        {% for item in player.inventory %}
+        <li>
+            <strong>{{ item.name }}</strong> - Damage: {{ item.damage }} | Health: {{ item.health }}
+            <a href="{{ url_for('set_primary', item_name=item.name) }}">Set as Primary</a> |
+            <a href="{{ url_for('set_healer', item_name=item.name) }}">Set as Healer</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>Primary Weapon: {{ player.primary.name if player.primary else 'None' }}</p>
+    <p>Healer: {{ player.healer.name if player.healer else 'None' }}</p>
+    <a href="{{ url_for('shop') }}">Back to Shop</a>
+</body>
+</html>
